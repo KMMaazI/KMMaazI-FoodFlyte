@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodflyte</title>
+    {% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
+
+    
+     <!-- Link to the external CSS file -->
+</head>
+<body>
+    <header>
+        <div class="logo">Foodflyte</div>
+        <nav>
+            <ul>
+                <li><a href="signup" class="nav-button">Sign Up</a></li>
+                <li><a href="login" class="nav-button">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>Welcome to Foodflyte</h1>
+        <p>Join our community of food lovers and discover the best dining experiences.</p>
+
+        <!-- Food Image Section -->
+        <div class="food-image">
+            <img src="https://images.deliveryhero.io/image/foodpanda/home-vendor-pk.jpg?width=1264&height=808.96" alt="Delicious Food" />
+        </div>
+
+        <!-- Main Category Cards with Images -->
+         
+        <div class="restaurants-container" style="display: flex; gap: 20px;">
+            {% for rest1 in menu %}
+                <div class="restaurant-card" onclick="window.location.href = 'desi/'">
+                    <h3>{{ rest1.name }}</h3>
+                    <p>{{ rest1.description }}</p>
+                    <a href="/restaurant/{{ rest1.id }}/">
+                        <img src="{{ rest1.picture }}" alt="{{ rest1.name }}">
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        
+    
+</div>
+
+        
+    </main>
+
+   
+
+    <script>
+
+        
+    </script> <!-- Link to the external JavaScript file -->
+</body>
+</html>

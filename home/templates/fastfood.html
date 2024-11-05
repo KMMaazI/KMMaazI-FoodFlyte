@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Food Restaurant</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">Foodflyte - Fast Food Restaurant</div>
+    </header>
+    
+    <main>
+        <section class="restaurants">
+            <!-- First row of restaurant cards -->
+            <div class="restaurant-card" onclick="alert('Welcome to Burger Joint!')">
+                <img src="https://plus.unsplash.com/premium_photo-1684534125661-614f59f16f2e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YnVyZ2Vyc3xlbnwwfHwwfHx8MA%3D%3D" alt="Burger Joint">
+                <h3>Burger Joint</h3>
+                <p>Juicy burgers and fries, a classic favorite!</p>
+            </div>
+            <div class="restaurant-card" onclick="alert('Welcome to Pizza Palace!')">
+                <img src="https://static.toiimg.com/thumb/53110049.cms?width=1200&height=900" alt="Pizza Palace">
+                <h3>Pizza Palace</h3>
+                <p>Freshly baked pizzas.</p>
+            </div>
+            <div class="restaurant-card" onclick="alert('Welcome to Taco Town!')">
+                <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" alt="Taco Town">
+                <h3>Taco Town</h3>
+                <p>Delicious tacos with fresh ingredients.</p>
+            </div>
+
+            <!-- Second row of restaurant cards -->
+            <div class="restaurant-card" onclick="alert('Welcome to Sweet Treats!')">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" alt="Sweet Treats">
+                <h3>Sweet Treats</h3>
+                <p>Desserts and sweets for every craving.</p>
+            </div>
+            <div class="restaurant-card" onclick="alert('Welcome to Sushi Spot!')">
+                <img src="https://images.unsplash.com/photo-1553621042-f6e147245754?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" alt="Sushi Spot">
+                <h3>Sushi Spot</h3>
+                <p>Fresh sushi rolls and sashimi.</p>
+            </div>
+            <div class="restaurant-card" onclick="alert('Welcome to Salad Central!')">
+                <img src="https://images.unsplash.com/photo-1512058564366-c9e2f7f1e00e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=400" alt="Salad Central">
+                <h3>Salad Central</h3>
+                <p>Healthy and tasty salad options.</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
