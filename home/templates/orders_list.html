@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        nav a:hover {
+            background-color: #444;
+            border-radius: 4px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .orders-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .order-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-item h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .order-item p {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .order-item p strong {
+            color: #333;
+        }
+
+        .order-item .total-bill {
+            font-weight: bold;
+            font-size: 18px;
+            color: #000;
+            margin-top: 10px;
+        }
+
+        .order-item:hover {
+            background-color: #fafafa;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-orders-message {
+            font-size: 18px;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Foodflyte</div>
+        <nav>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="nav-btn">Logout</a>
+                <a href="{% url 'homepage' %}" class="nav-btn">Back to Homepage</a>
+            {% else %}
+                <a href="{% url 'signup' %}" class="nav-btn">Sign up</a>
+                <a href="{% url 'login_view' %}" class="nav-btn">Sign in</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        <h1>My Orders</h1>
+
+        {% if orders %}
+            <ul class="orders-list">
+                {% for order in orders %}
+                    <li class="order-item">
+                        <h3>Order for {{ order.menu_item.food_name }}</h3>
+                        <p><strong>Address:</strong> {{ order.address }}</p>
+                        <p><strong>Ordered on:</strong> {{ order.created_at }}</p>
+
+                        <!-- Displaying the total bill (price of the item) -->
+                        <p class="total-bill"><strong>Total Bill:</strong> Rs. {{ order.price }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-orders-message">You haven't placed any orders yet.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

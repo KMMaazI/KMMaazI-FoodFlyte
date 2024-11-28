@@ -76,6 +76,10 @@
 <body>
     <div class="container">
         <h1>Sign Up</h1>
+        {% if error %}
+        <div style="color: red;">{{ error }}</div>
+    {% endif %}
+      
         <form method="POST" id="signupForm" action="{% url 'signup' %}">
             {% csrf_token %}
             <input type="text" name="username" placeholder="Username" required>
@@ -92,10 +96,11 @@
             
             <button type="submit">Sign Up</button>
         </form>
-        <p>Already have an account? <a id="login" href="{% url 'login' %}">Log in</a></p>
+        <p>Already have an account? <a id="login" href="{% url 'login_view' %}">Log in</a></p>
     </div>
 
     <script>
+     
         document.addEventListener("DOMContentLoaded", function () {
             const signupForm = document.getElementById("signupForm");
             const usernameInput = document.querySelector("input[name='username']");

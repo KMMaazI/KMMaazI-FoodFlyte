@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foodflyte</title>
     {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
-
-    
-     <!-- Link to the external CSS file -->
+    <link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
 </head>
 <body>
     <header>
         <div class="logo">Foodflyte</div>
+        <form method="get" action="{% url 'search_restaurant' %}" class="search-bar">
+            <input type="text" name="q" value="{{ query }}" placeholder="Search restaurants...">
+            <button type="submit">Search</button>
+        </form>
         <nav>
-            <ul>
-                <li><a href="signup" class="nav-button">Sign Up</a></li>
-                <li><a href="login" class="nav-button">Sign In</a></li>
-            </ul>
+            {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}" class="nav-btn">Logout</a>
+                <a href="{% url 'orders_list' %}" class="nav-btn">My Orders</a>  <!-- New button for orders -->
+            {% else %}
+                <a href="{% url 'signup' %}" class="nav-btn">Sign up</a>
+                <a href="{% url 'login_view' %}" class="nav-btn">Sign in</a>
+            {% endif %}
         </nav>
     </header>
     
@@ -30,31 +34,27 @@
             <img src="https://images.deliveryhero.io/image/foodpanda/home-vendor-pk.jpg?width=1264&height=808.96" alt="Delicious Food" />
         </div>
 
-        <!-- Main Category Cards with Images -->
-         
+        <!-- Restaurant Category Cards with Images -->
+        {% if restaurants %}
+        
         <div class="restaurants-container" style="display: flex; gap: 20px;">
-            {% for rest1 in menu %}
-                <div class="restaurant-card" onclick="window.location.href = 'desi/'">
-                    <h3>{{ rest1.name }}</h3>
-                    <p>{{ rest1.description }}</p>
-                    <a href="/restaurant/{{ rest1.id }}/">
-                        <img src="{{ rest1.picture }}" alt="{{ rest1.name }}">
-                    </a>
-                </div>
+            {% for rest1 in restaurants %}
+            <div class="restaurant-card" onclick="window.location.href = '/restaurant/{{ rest1.name }}/'">
+                <h3>{{ rest1.name }}</h3>
+                <p>{{ rest1.description }}</p>
+                <a onclick="window.location.href = '/restaurant/{{ rest1.name }}/'" >
+                    <img src="{{ rest1.picture }}" alt="{{ rest1.name }}">
+                </a>
+            </div>
             {% endfor %}
         </div>
-        
-    
-</div>
-
-        
+    {% else %}
+        <p>No restaurants found matching your query.</p>
+    {% endif %}
     </main>
 
-   
-
     <script>
-
-        
-    </script> <!-- Link to the external JavaScript file -->
+        // Any additional JavaScript functionality can be added here
+    </script>
 </body>
 </html>
